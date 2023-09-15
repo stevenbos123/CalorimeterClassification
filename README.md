@@ -12,6 +12,7 @@ This README provides instructions on how to execute the workflow to train a NN o
 ## Display raw Data
 
 Raw data can be found on: https://cernbox.cern.ch/s/IMUyyboVMoiWkHP
+And should be put in the folder `/data/raw/`.
 
 gps3 refers to the positron simulation and gps6 to the pion simulation both at 20 GeV with a Gaussian spread of 0.3 GeV as stated by the SPS facility.
 The root-files contain a CaloOutputWriter folder with a Root TTree called Frames.
@@ -21,6 +22,7 @@ As EPICAL-2 is equipped with two sensors per layer, lane corresponds to a chip i
 To Display a 3Dimensional reconstruction of a single event in the calorimeter, Run `root display_raw_data.cxx`. It should make a canvas with the event colored per layer. 
 
 ## Process raw Data
+Create the folder: `/data/processed`.\
 In order to use the raw data for the NN we have to scale down the information for it to efficiently run on the network. For this we will project the event onto the xy plane, and also downscale the image to a chosen quantization. `root convert_raw_data_and_project.cxx` will do this for you. It is now set to downscaling to 32x32. You have to do this for both the gps3 and gps6 data, so you will have two output files named `gps6_xyproj_hist.root` and `gps3_xyproj_hist.root`.
 
 
